@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--  font awsome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- My css -->
+    <link rel="stylesheet" href="css/theme.css">
+
+    <!-- page title -->
+    <title>Landing Page</title>
+</head>
+
+<body>
+
+    <header class="w-100 d-flex justify-content-center align-items-end align-items-sm-center position-relative"
+        id="header"
+        style="background-image: url('assets/bg-img.webp'); background-position: center; background-repeat: no-repeat; background-size: cover; height: 70vh; " >
+        <div class="position-absolute top-0 start-0 end-0 bottom-0 w-100 h-100 " style="z-index: 1;" id="map">
+        
+        </div>
+        <div class="w-70 w-md-50 bg-white p-4 rounded me-4 d-none translated ms-4" style="z-index: 2;" id="result">
+            <h5>Your report is ready for </h5>
+            <h3 class="fw-bold py-2" id="address_label">
+                <!-- 121 Tomlinson Dr, Folsom, CA 95630, USA 95630 -->
+            </h3>
+            <div >
+                <form onsubmit="event.preventDefault()"  class="">
+                    <input required type="text" class="form-control mb-3" placeholder="Name">
+                    <select class="form-select mb-3">
+                        <option selected>What are you interested in?</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    <button type="submit" class="btn btn-primary text-nowrap fw-bold flex-grow-1" style="min-width: 180px;" 
+                    data-bs-toggle="modal"
+                    data-bs-target="#thankYouModal"
+                    >View my report <i class="fa-solid fa-arrow-right ps-1"
+                        
+                        ></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="w-75 bg-white p-4 rounded translated" id="estimate-form" style="z-index: 3;">
+            <h1>What is Your Roseville Home Worth Now?</h1>
+            <p>
+                Recent home sales have affected your home’s value! Get your home’s new value estimate instantly for free!
+            </p>
+            <div >
+                <form onsubmit="estimateHouse(event)" class="d-flex gap-2 flex-wrap flex-md-nowrap">
+                    <input required type="text" class="form-control " placeholder="Enter your home address" id="home_address">
+                    <button type="submit" class="btn btn-primary text-nowrap fw-bold flex-grow-1" style="min-width: 180px;" id="estimate" >Get value estimate <i class="fa-solid fa-arrow-right ps-1"></i></button>
+                </form>
+            </div>
+        </div>
+    </header>
+    <br>
+    <br>
+    <div class="d-md-none">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+            <br>
+           
+    </div>
+    <!-- <br> -->
+
+    <main class="container">
+        <h3 class="py-4">Discover the value of your property</h3>
+
+        <section class="row">
+            <article class="col-12 col-md-6 col-lg-4 p-4">
+                <img src="assets/track.svg" alt="track icon image" height="40" width="40">
+                <h5 class="py-2">Truck your home's value</h5>
+                <p class="fs-6">
+                    Instantly learn your home’s value and how much you could sell for in today’s market.
+                </p>
+            </article>
+            <article class="col-12 col-md-6 col-lg-4 p-4">
+
+                <img src="assets/trends.svg" alt="trends icon image" height="40" width="40">
+                <h5 class="py-2">See local market trends</h5>
+                <p class="fs-6">
+                    Stay up to date on market changes and find out how much homes like yours have sold in the past year.
+                </p>
+            </article>
+            <article class="col-12 col-md-6 col-lg-4 p-4">
+                <img src="assets/report.svg" alt="report icon image" height="40" width="40">
+                <h5 class="py-2">Get a free monthly home report</h5>
+                <p class="fs-6">
+                    Receive a monthly email with updates about your home value and how it’s changing.
+                </p>
+            </article>
+        </section>
+        <br><br>
+
+        <section class="row bg-primary text-white p-4 rounded booking">
+            <article class="col12 col-lg-6 p-4">
+                <h4 class="py-2 fw-bold">Book an in-person valuation</h4>
+                <p>Get the most accurate valuation based on:</p>
+                <p>
+                    <i class="fa-regular fa-circle-check text-secondary pe-2"></i>
+                    <span>Your unique property features</span>
+                </p>
+                <p>
+                    <i class="fa-regular fa-circle-check text-secondary pe-2"></i>
+                    <span>Our knowledge of the area </span>
+                </p>
+                <p>
+                    <i class="fa-regular fa-circle-check text-secondary pe-2"></i>
+                    <span>The latest changes in the local market</span>
+                </p>
+
+                <button class="btn bg-white text-primary fw-bold book-btn" data-bs-toggle="modal"
+                    data-bs-target="#bookModal">Book now<i class="fa-solid fa-arrow-right ps-2"></i></button>
+            </article>
+            <article class="col-lg-6 p-4 d-none d-lg-block">
+                <img src="assets/illustration.svg" alt="" width="380" height="190">
+            </article>
+
+        </section>
+
+        <br><br>
+
+        <section>
+            <h3 class="py-4">Pump up the value with our guides</h3>
+            <p>
+                If you’re looking to sell quickly or boost the value of your home, our expert free guides will help you
+                do it like a pro.
+            </p>
+
+            <section class="row">
+                <article class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-grey rounded">
+                        <div class="position-relative">
+                            <img src="assets/guide1.webp" class="w-100" alt="house for sale image" height="150">
+                            <span class="bg-secondary position-absolute rounded p-2 text-custom-primary fw-bold"
+                                style="top: 10px; left: 10px">
+                                FREE GUIDE
+                            </span>
+                        </div>
+                        <h4 class="fw-bold py-2">
+                            The ultimate guide to selling your Home
+                        </h4>
+    
+                        <button class="underlined" data-bs-toggle="modal"
+                        data-bs-target="#downloadModal">Download <i class="fa-solid fa-download ps-1"></i></button>
+                    </div>
+                </article>
+                <article class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 rounded bg-grey">
+                        <div class="position-relative">
+                            <img src="assets/guide2.webp" class="w-100" alt="mini toy house image" height="150">
+                            <span class="bg-secondary position-absolute rounded p-2 text-custom-primary fw-bold"
+                                style="top: 10px; left: 10px">
+                                FREE GUIDE
+                            </span>
+                        </div>
+                        <h4 class="fw-bold py-2">
+                            How to increase your home value
+                        </h4>
+    
+                        <button class="underlined" data-bs-toggle="modal"
+                        data-bs-target="#downloadModal">Download <i class="fa-solid fa-download ps-1"></i></button>
+                    </div>
+                </article>
+                <article class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="p-4 bg-grey rounded">
+                        <div class="position-relative">
+                            <img src="assets/guide3.webp" class="w-100" alt="house structure image" height="150">
+                            <span class="bg-secondary position-absolute rounded p-2 text-custom-primary fw-bold"
+                                style="top: 10px; left: 10px">
+                                FREE GUIDE
+                            </span>
+                        </div>
+                        <h4 class="fw-bold py-2">
+                            25 factors that impact your home value
+                        </h4>
+    
+                        <button class="underlined" data-bs-toggle="modal"
+                        data-bs-target="#downloadModal">Download <i class="fa-solid fa-download ps-1"></i></button>
+                    </div>
+                </article>
+            </section>
+        </section>
+
+
+        <br><br>
+
+        <section>
+            <h3 class="py-4">Recent Reviews</h3>
+            <!-- The first review -->
+            <article class="p-4 bg-grey rounded mb-4">
+                <div class="d-flex gap-2 text-custom-primary py-2">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h4 class="py-2 fw-bold">Highly likely to recommend</h4>
+                <p>
+                    Jake made our dreams come true! He helped us find the perfect location for a new home build and
+                    negotiated tirelessly to get us a deal that worked within our budget. He then sold our existing
+                    house on the first day it went on the market for the price we had. Jake made our dreams come true!
+                    He helped us find the perfect location for a new home build…
+                </p>
+                <h5 class="fw-bold pt-2">03/02/2018 - Matthew Liba</h5>
+                <p>
+                    Bought and sold a Single Family home in 2022 in Folsom, CA.
+                </p>
+            </article>
+
+            <!-- The second review -->
+            <article class="p-4 bg-grey rounded mb-4">
+                <div class="d-flex gap-2 text-custom-primary py-2">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h4 class="py-2 fw-bold">Highly likely to recommend</h4>
+                <p>
+                    Jake made our dreams come true! He helped us find the perfect location for a new home build and
+                    negotiated tirelessly to get us a deal that worked within our budget. He then sold our existing
+                    house on the first day it went on the market for the price we had. Jake made our dreams come true!
+                    He helped us find the perfect location for a new home build…
+                </p>
+                <h5 class="fw-bold pt-2">03/02/2018 - Matthew Liba</h5>
+                <p>
+                    Bought and sold a Single Family home in 2022 in Folsom, CA.
+                </p>
+            </article>
+
+            <!-- The third review -->
+            <article class="p-4 bg-grey rounded mb-4">
+                <div class="d-flex gap-2 text-custom-primary py-2">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <h4 class="py-2 fw-bold">Highly likely to recommend</h4>
+                <p>
+                    Jake made our dreams come true! He helped us find the perfect location for a new home build and
+                    negotiated tirelessly to get us a deal that worked within our budget. He then sold our existing
+                    house on the first day it went on the market for the price we had. Jake made our dreams come true!
+                    He helped us find the perfect location for a new home build…
+                </p>
+                <h5 class="fw-bold pt-2">03/02/2018 - Matthew Liba</h5>
+                <p>
+                    Bought and sold a Single Family home in 2022 in Folsom, CA.
+                </p>
+            </article>
+        </section>
+
+        <br><br>
+
+        <section class="row">
+            <article class="col-12 col-md-6 col-lg-4 mb-4" >
+              <div class=" p-4 rounded" style="background-color: #f5d24831;">
+                <h3 class="fw-bold pb-2">How much is my home worth?</h3>
+                <a href="" class="fw-bold">Check price estimate <i class="fa-solid fa-arrow-right ps-2"></i></a>
+              </div>
+            </article>
+            <article class="col-12 col-md-6 col-lg-4 mb-4">
+               <div class="p-4 rounded bg-grey">
+                <h3 class="fw-bold pb-2">Downpayment Assistance Available</h3>
+                <a href="" class="fw-bold">Learn More <i class="fa-solid fa-arrow-right ps-2"></i></a>
+               </div>
+            </article>
+            <article class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 rounded bg-grey">
+                    <h3 class="fw-bold pb-2">New Construction For Sale</h3>
+                <a href="" class="fw-bold">Learn More <i class="fa-solid fa-arrow-right ps-2"></i></a>
+                </div>
+            </article>
+        </section>
+
+        <br>
+        <br>
+
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 bg-grey">
+        <section class="container row">
+            <article class="col-12 col-lg-4 mb-4">
+                <img src="assets/Mask .webp" alt="" width="100" height="100">
+                <h4>
+                    Jake Brown <br> Realtor, Howard Hanna
+                </h4>
+                <p>
+                    <b>Address:</b> 123 Main Street, Folsom, CA <br> <b>Phone:</b> 202-555-0108 <br> <b>Office:</b>
+                    202-555-0187 <br> <b>Email:</b> jake@howardhanna.com <br> <b>License:</b> 123456, CA
+                </p>
+                <img src="assets/logo.svg" alt="" width="111" height="67">
+            </article>
+            <article class="col-12 col-lg-8">
+                <section class="row gap-4">
+                    <div class="col-12 col-lg-6">
+                        <h4 class="fw-bold py-2">Useful Links</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li class="py-2">
+                                <a href="" style="color: #212529;">Search All Homes for Sale</a>
+                            </li>
+                            <li class="py-2">
+                                <a href="" style="color: #212529;">Downpayment Assistance Available</a>
+                            </li>
+                            <li class="py-2">
+                                <a href="" style="color: #212529;">New Construction For Sale</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <h4 class="fw-bold py-2">Connect</h4>
+                        <ul style="list-style: none; padding: 0;" class="d-flex">
+                            <li class="p-1 d-inline">
+                                <a href=""
+                                    class="bg-primary p-2 rounded-circle d-flex justify-content-center align-items-center"
+                                    style="width: 40px; height: 40px;color: #212529;">
+
+                                    <img src="assets/facebook.svg" alt="" width="20" height="20">
+
+                                </a>
+                            </li>
+                            <li class="p-1 d-inline">
+                                <a href=""
+                                    class="bg-primary p-2 rounded-circle d-flex justify-content-center align-items-center"
+                                    style="width: 40px; height: 40px;color: #212529;">
+
+                                    <img src="assets/instagram.svg" alt="" width="20" height="20">
+
+                                </a>
+
+                            </li>
+                            <li class="p-1 d-inline">
+                                <a href=""
+                                    class="bg-primary p-2 rounded-circle d-flex justify-content-center align-items-center"
+                                    style="width: 40px; height: 40px;color: #212529;">
+
+                                    <img src="assets/twitter.svg" alt="" width="20" height="20">
+
+                                </a>
+                            </li>
+                            <li class="p-1 d-inline">
+                                <a href=""
+                                    class="bg-primary p-2 rounded-circle d-flex justify-content-center align-items-center"
+                                    style="width: 40px; height: 40px;color: #212529;">
+
+                                    <img src="assets/linkedin.svg" alt="" width="20" height="20">
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <hr>
+                <section class="py-4">
+                    <img src="assets/legal-logos.svg" alt="" class="py-4">
+                    <p>
+                        This is the legal description for my listings. This listing is for demonstration purposes only.
+                        This property is NOT for sale. Your privacy is important to us and we are committed to
+                        protecting the privacy of our users and the information that you share in connection with our
+                        Site. <br><br>
+                        By searching, you agree to the <a href="">Terms of Use</a>, and <a href="">Privacy Policy</a>.
+                        <br> <br>
+                        Copyright &copy; 2022 ListingsToLeads. All rights reserved.
+                    </p>
+                </section>
+            </article>
+        </section>
+    </footer>
+
+    <!-- Modal for Booking  -->
+    <div class="modal" tabindex="-1" id="bookModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex justify-content-end mb-4">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h5 class="fw-bold py-2">Book an in-person valuation</h5>
+                    <p>Get the most accurate valuation based on:</p>
+                    <p>
+                        <i class="fa-regular fa-circle-check text-custom-primary pe-2"></i>
+                        <span>Your unique property features</span>
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-circle-check text-custom-primary pe-2"></i>
+                        <span>Our knowledge of the area </span>
+                    </p>
+                    <p>
+                        <i class="fa-regular fa-circle-check text-custom-primary pe-2"></i>
+                        <span>The latest changes in the local market</span>
+                    </p>
+
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label fw-bold">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="123 Main Street, Los Angeles, CA">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email address</label>
+                            <input type="text" class="form-control" id="email" placeholder="john@example.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-bold">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="123-456-7890">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary fw-bold w-100">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal to download guide -->
+    <div class="modal" tabindex="-1" id="downloadModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex justify-content-end mb-4">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="position-relative" >
+                        <img src="assets/guide1.webp" class="w-100" alt="">
+                        <span class="bg-secondary position-absolute rounded p-2 text-custom-primary fw-bold"
+                            style="top: 10px; left: 10px">
+                            FREE GUIDE
+                        </span>
+                    </div>
+                    <h3 class="py-2 fw-bold">The ultimate guide to selling your home</h3>
+                    <p>
+                        Learn what to expect every step of the way, how to negotiate your home sale, tips from experienced realtors and more.
+                    </p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="John Doe">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email address</label>
+                            <input type="text" class="form-control" id="email" placeholder="john@example.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-bold">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="123-456-7890">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary fw-bold w-100">Download free guide</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Booking  -->
+    <div class="modal" tabindex="-1" id="thankYouModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex justify-content-end mb-4">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.location.reload()"></button>
+                    </div>
+                    <h5 class="fw-bold py-2">Thank you</h5>
+                    <p>
+                        Your enquiry has been sent successully. We will give you a call soon to make arrangements for a valuation visit.
+                    </p>
+                   
+                <div class="modal-footer justify-content-start">
+                    <button type="button" class="btn underlined fw-bold " data-bs-dismiss="modal" aria-label="Close" onclick="window.location.reload()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXHt0TqVhlmJNnGx9lhLAQwI4nH8wCgcg&libraries=places"></script>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
